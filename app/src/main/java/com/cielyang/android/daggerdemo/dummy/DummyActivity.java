@@ -1,21 +1,34 @@
 package com.cielyang.android.daggerdemo.dummy;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 
 import com.cielyang.android.daggerdemo.R;
-import com.cielyang.android.daggerdemo.base.BaseActivity;
+import com.example.mine.base.BaseActivity;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasFragmentInjector;
+import dagger.android.support.HasSupportFragmentInjector;
+
 public class DummyActivity extends BaseActivity
-        implements DummyFragment.OnDummyActivityFragmentInteractionListener {
+        implements DummyFragment.OnDummyActivityFragmentInteractionListener,HasFragmentInjector, HasSupportFragmentInjector {
+
+    @Inject
+    DispatchingAndroidInjector<android.support.v4.app.Fragment> supportFragmentInjector;
+    @Inject DispatchingAndroidInjector<android.app.Fragment> frameworkFragmentInjector;
+
 
     @Inject
     DummyContract.Presenter mPresenter;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dummy_layout);
 
@@ -32,5 +45,15 @@ public class DummyActivity extends BaseActivity
 
     @Override
     public void onDummyActivityFragmentInteraction() {
+    }
+
+    @Override
+    public AndroidInjector<Fragment> fragmentInjector() {
+        return frameworkFragmentInjector;
+    }
+
+    @Override
+    public AndroidInjector<android.support.v4.app.Fragment> supportFragmentInjector() {
+        return supportFragmentInjector;
     }
 }

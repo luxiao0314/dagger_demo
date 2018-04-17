@@ -1,6 +1,7 @@
 package com.cielyang.android.daggerdemo.dummy;
 
-import com.cielyang.android.daggerdemo.di.ActivityScoped;
+
+import com.example.mine.ActivityScoped;
 
 import javax.inject.Inject;
 

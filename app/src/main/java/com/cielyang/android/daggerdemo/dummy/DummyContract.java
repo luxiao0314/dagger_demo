@@ -1,7 +1,8 @@
 package com.cielyang.android.daggerdemo.dummy;
 
-import com.cielyang.android.daggerdemo.base.BasePresenter;
-import com.cielyang.android.daggerdemo.base.BaseView;
+
+import com.example.mine.base.BasePresenter;
+import com.example.mine.base.BaseView;
 
 public interface DummyContract {
 

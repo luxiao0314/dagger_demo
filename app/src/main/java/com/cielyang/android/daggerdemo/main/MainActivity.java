@@ -6,8 +6,8 @@ import android.support.v7.widget.AppCompatButton;
 import android.widget.Toast;
 
 import com.cielyang.android.daggerdemo.R;
-import com.cielyang.android.daggerdemo.base.BaseActivity;
 import com.cielyang.android.daggerdemo.dummy.DummyActivity;
+import com.example.mine.base.BaseActivity;
 
 import javax.inject.Inject;
 import javax.inject.Named;

@@ -1,5 +1,7 @@
 package com.cielyang.android.daggerdemo.dummy;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -9,8 +11,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.cielyang.android.daggerdemo.R;
-import com.cielyang.android.daggerdemo.base.BaseFragment;
-import com.cielyang.android.daggerdemo.di.ActivityScoped;
+import com.example.mine.ActivityScoped;
+import com.example.mine.MineActivity;
+import com.example.mine.base.BaseFragment;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -18,6 +21,7 @@ import javax.inject.Named;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import dagger.android.support.AndroidSupportInjection;
 
 @ActivityScoped
 public final class DummyFragment extends BaseFragment implements DummyContract.View {
@@ -47,6 +51,12 @@ public final class DummyFragment extends BaseFragment implements DummyContract.V
     }
 
     @Override
+    public void onAttach(Context context) {
+        AndroidSupportInjection.inject(this);
+        super.onAttach(context);
+    }
+
+    @Override
     public void onDestroy() {
         mPresenter.dropView();
         super.onDestroy();
@@ -64,7 +74,7 @@ public final class DummyFragment extends BaseFragment implements DummyContract.V
             @NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dummy_layout, container, false);
         unbinder = ButterKnife.bind(this, view);
-
+        mTextViewContent.setOnClickListener(view1 -> startActivity(new Intent(getActivity(), MineActivity.class)));
         return view;
     }
 
