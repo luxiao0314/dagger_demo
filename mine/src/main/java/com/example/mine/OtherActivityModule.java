@@ -11,12 +11,11 @@ import dagger.Provides;
  * @Version
  */
 @Module
-public class MineActivityModule {
+public class OtherActivityModule {
 
     @ActivityScoped
     @Provides
-    User provideUser() {
-        return new User("lux", "男");
+    Other provideOther() {
+        return new Other("sean", "男");
     }
-
 }
