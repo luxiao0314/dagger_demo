@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cielyang.android.daggerdemo.R;
 import com.example.mine.ActivityScoped;
@@ -75,6 +76,7 @@ public final class DummyFragment extends BaseFragment implements DummyContract.V
         View view = inflater.inflate(R.layout.fragment_dummy_layout, container, false);
         unbinder = ButterKnife.bind(this, view);
         mTextViewContent.setOnClickListener(view1 -> startActivity(new Intent(getActivity(), MineActivity.class)));
+        Toast.makeText(getActivity(), mContent, Toast.LENGTH_SHORT).show();
         return view;
     }
 
