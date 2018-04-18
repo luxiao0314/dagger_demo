@@ -13,7 +13,7 @@ import dagger.Provides;
  */
 @Module
 public class DummyFragmentModule {
-    
+
     @FragmentScoped
     @Provides
     @Named("dummy")
